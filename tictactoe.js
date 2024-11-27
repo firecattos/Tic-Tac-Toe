@@ -1,11 +1,11 @@
 function Gameboard(){
-    const rows=3, columns=3;    //Defined just for ease of creating custom games if needed
+    //const rows=3, columns=3;    //Defined just for ease of creating custom games if needed
     let gameArr=[];
 
     const createBoard = ()=>{
-        for (let i = 0; i < rows; i++) {
+        for (let i = 0; i < 3; i++) {
             gameArr[i] = [];
-            for (let j = 0; j < columns; j++) {
+            for (let j = 0; j < 3; j++) {
                 //gameArr[i].push(Position());
                 gameArr[i].push(" ");
             }
@@ -70,6 +70,10 @@ function Players(){
     const currentPlayer= ()=>{ return activePlayer; }
 
     const incrementVictories= (id)=>players[id].victories++;
+    /*const incrementVictories= (id)=>{
+        players[id].victories++;
+        console.log("Inside incrementVictories");
+    }*/
 
     const getVictories= (value)=>{
         if(value==="X") return players[0].victories;
@@ -119,7 +123,7 @@ function Game(gameboard, players){
     };
 
     const checkWinner= (gameArr)=>{
-        console.log("checkWinner.");
+        //console.log("checkWinner.");
         
         for(let rows=0; rows<3; rows++)    //Checks rows for a winner
             if(gameArr[rows][0]!=" " && gameArr[rows][0]===gameArr[rows][1] && gameArr[rows][1]===gameArr[rows][2]) winner=gameArr[rows][0];
@@ -134,6 +138,7 @@ function Game(gameboard, players){
             case "X":
                 console.log("X wins!");
                 players.incrementVictories(0);
+                //console.log("Total X wins: "+players.getVictories("X"))
                 winner="";
                 return true;
             case "O":
@@ -164,7 +169,8 @@ function Game(gameboard, players){
             gameboard.printBoard();
 
             isOver=checkWinner(gameboard.getGameArr());
-            isOver=checkDraw(gameboard.getGameArr());
+            if(!isOver) isOver=checkDraw(gameboard.getGameArr());
+            //console.log("isOver value: "+isOver);
             players.changePlayer();
         }
     };
@@ -177,7 +183,7 @@ function Game(gameboard, players){
         return inp;
     }
 
-    /*const getWinner= ()=>{ //testing only, to remove
+    /*const getWinner= ()=>{ //for testing only, do not include
         return winner;
     };*/
 
