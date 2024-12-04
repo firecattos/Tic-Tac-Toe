@@ -1,0 +1,70 @@
+body{
+    background-color: #a3d8f4;
+    /*choose sans serif font maybe*/
+}
+
+.gameContainer{
+    display: grid;
+    justify-content: center;
+    gap: 5px;
+}
+
+.statusContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.playerTotals{
+    display: flex;
+}
+
+.playerTotals>*, .playerTotals>*>*{
+    background-color: white;
+    margin: 0 5px;
+}
+
+/*.playerTotals>*{
+    padding: 0 5px;
+}*/
+
+.victories .count{
+    text-align: center;
+}
+
+.currentPlayer{
+    text-align: center;
+}
+
+.gridContainer{
+    display: grid;
+    gap: 16px;
+    /*temp*/
+    width: 350px;
+    height: 350px;
+    justify-self: center;
+}
+
+.rows{
+    display: grid;
+    grid-auto-flow: column;
+    gap: 16px;
+}
+
+.cells{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: white; /*temporary*/
+}
+
+.buttonsContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.buttonsContainer button{
+    margin: 0 5px;
+}
