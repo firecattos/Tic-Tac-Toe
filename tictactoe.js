@@ -24,8 +24,10 @@ function Gameboard(){
     };
 
     const setValue= (a, b, player)=>{
+        /*console.log("typeof a "+typeof(a));
+        console.log("a: "+a);*/
         if(gameArr[a][b]!=" "){
-            //console.log("Cell already full!");
+            console.log("Cell already full!");
             return false;//call again for  (?)
         }
         gameArr[a][b]=player;
@@ -35,7 +37,7 @@ function Gameboard(){
     const isFull= ()=> {
         //console.log("isFull.");
 
-        return gameArr.every((row)=>row.every((cell)=>cell!=" "))
+        return gameArr.every((row)=>row.every((cell)=>cell!=" "));
     };
 
     const getGameArr= ()=>{ return gameArr; };
@@ -118,6 +120,7 @@ function Game(gameboard, players){
 
         if(gameboard.isFull() && winner===""){
             console.log("It's a draw!");
+            drawsCount.textContent=parseInt(drawsCount.textContent)+1;
             return true;
         }
     };
@@ -138,17 +141,20 @@ function Game(gameboard, players){
             case "X":
                 console.log("X wins!");
                 players.incrementVictories(0);
+                victoriesX.textContent=parseInt(victoriesX.textContent)+1;
                 //console.log("Total X wins: "+players.getVictories("X"))
                 winner="";
                 return true;
             case "O":
                 console.log("O wins!");
                 players.incrementVictories(1);
+                victoriesO.textContent=parseInt(victoriesO.textContent)+1;
                 winner="";
                 return true;
         }
     };
 
+    /*  *Previous console based game*
     const startGame= ()=>{
         let isOver=false;
         while(!isOver){
@@ -165,7 +171,7 @@ function Game(gameboard, players){
                     valid=gameboard.setValue(row, col, currentPlayer);
                 }
             }
-            
+
             gameboard.printBoard();
 
             isOver=checkWinner(gameboard.getGameArr());
@@ -182,6 +188,71 @@ function Game(gameboard, players){
         }
         return inp;
     }
+    */
+
+    let gameState={
+        valid: undefined,
+        currentPlayer: "",
+        isOver: false
+    };
+
+    const startGame= ()=>{
+        //reset gameboard;  V
+        //gameboard.clearBoard();   V
+        //players.resetPlayer();    V
+        newBoard();
+        gameState.currentPlayer = players.currentPlayer().value;
+        //let valid=undefined;
+        currentPlayerDisplay.textContent = gameState.currentPlayer;
+        gridRows.forEach((row) => {   //put this out
+            row.addEventListener("click", gridInterface);
+            /*row.addEventListener("click", function (e) {
+                if (e.target.classList.contains("cells")) {
+                    //console.log(e.target.textContent);  //working
+                    console.log("Col id: " + e.target.id);
+                    console.log("Row id: " + e.currentTarget.id);
+                    gameState.valid = gameboard.setValue(parseInt(e.currentTarget.id[3]), parseInt(e.target.id[3]), gameState.currentPlayer);
+
+                    console.log("valid value: " + gameState.valid);
+
+                    handleMove();
+                }
+            });*/
+        });
+    };
+
+    function gridInterface(e){
+        if (e.target.classList.contains("cells")) {
+            //console.log(e.target.textContent);  //working
+            console.log("Col id: " + e.target.id);
+            console.log("Row id: " + e.currentTarget.id);
+            gameState.valid = gameboard.setValue(parseInt(e.currentTarget.id[3]), parseInt(e.target.id[3]), gameState.currentPlayer);
+
+            //console.log("valid value: " + gameState.valid);
+
+            handleMove();
+        }
+    }
+
+    function handleMove(){
+        if(gameState.valid){
+            //console.log("valid is valid");
+
+            gameboard.printBoard();
+            gameState.isOver=checkWinner(gameboard.getGameArr());
+            if(!gameState.isOver) gameState.isOver=checkDraw(gameboard.getGameArr());
+            if(gameState.isOver) {
+                gridRows.forEach((row) =>{
+                    row.removeEventListener("click", gridInterface);
+                });
+            }
+            players.changePlayer();
+            gameState.currentPlayer=players.currentPlayer().value;
+            //console.log("Player changed. value: "+gameState.currentPlayer);
+            //if(gameState.valid && !gameState.isOver) startGame(); //change method
+            //or else it should repeat without changes to gameboard and players
+        }
+    }
 
     /*const getWinner= ()=>{ //for testing only, do not include
         return winner;
@@ -190,6 +261,10 @@ function Game(gameboard, players){
     return {newGame, newBoard, startGame, checkDraw, checkWinner/*, getWinner*/};
 }
 
+/*TO DO
+implement initialization of players totals and draws
+*/
+
 const gameboard=Gameboard();
 const players=Players();
 
@@ -197,3 +272,22 @@ gameboard.createBoard();
 players.createPlayers();
 const game=Game(gameboard, players);
 game.newGame();
+
+const startGame=document.getElementById("startGame");
+startGame.onclick= ()=>game.startGame();
+const boardReset=document.getElementById("boardReset"); //IMPLEMENT CURRENT PLAYER RESET
+boardReset.onclick= ()=>game.clearBoard();
+const gameReset=document.getElementById("gameReset");
+gameReset.onclick= ()=>game.newGame();
+
+const currentPlayerDisplay=document.getElementById("currentPlayer");
+
+const victoriesX=document.querySelector(".playerTotals #X .count");
+const drawsCount=document.querySelector(".playerTotals #draws .count");
+const victoriesO=document.querySelector(".playerTotals #O .count");
+
+const gridRows=document.querySelectorAll(".rows");
+
+/*victoriesX.textContent="X";
+drawsCount.textContent="DR";
+victoriesO.textContent="O";*/
