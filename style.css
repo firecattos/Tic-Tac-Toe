@@ -14,8 +14,13 @@ body{
     flex-direction: column;
 }
 
+.statusContainer>*{
+    padding: 8px;
+}
+
 .playerTotals{
     display: flex;
+    justify-content: center;
 }
 
 .playerTotals>*, .playerTotals>*>*{
@@ -31,13 +36,18 @@ body{
     text-align: center;
 }
 
-.currentPlayer{
-    text-align: center;
+.currentPlayerRow{
+    /*text-align: center;*/
+    display: flex;
+    justify-content: center;
+
+    visibility: hidden;
 }
 
 .gridContainer{
     display: grid;
     gap: 16px;
+    padding: 8px;
     /*temp*/
     width: 350px;
     height: 350px;
@@ -57,12 +67,13 @@ body{
     justify-content: center;
     align-items: center;
 
-    background-color: white; /*temporary*/
+    background-color: white; /*temporary?*/
 }
 
 .buttonsContainer{
     display: flex;
     justify-content: center;
+    padding: 8px;
 }
 
 .buttonsContainer button{

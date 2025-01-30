@@ -13,7 +13,7 @@
         <div class="statusContainer">
             <div class="playerTotals">
                 <div class="victories" id="X">
-                    <p class="header">Player "X" victories</p>
+                    <p class="header">Player "X"</p>
                     <p class="count">0</p>
                 </div>
                 <div class="victories" id="draws">
@@ -21,34 +21,38 @@
                     <p class="count">0</p>
                 </div>
                 <div class="victories" id="O">
-                    <p class="header">Player "O" victories</p>
+                    <p class="header">Player "O"</p>
                     <p class="count">0</p>
                 </div>
             </div>
-            <div class="currentPlayer">Current player: X</div>
+            <div class="currentPlayerRow">
+                <!--Current player: -->
+                <p id="currentPlayer"></p><p id="playerRowText">'s turn</p>
+                <!--<p class="testing" style="visibility: hidden">teeeest</p>-->
+            </div>
         </div>
 
         <div class="gridContainer">
             <div class="rows" id="row0">
-                <div class="cells" id="col0">1</div>
-                <div class="cells" id="col1">2</div>
-                <div class="cells" id="col2">3</div>
+                <div class="cells" id="col0"></div>
+                <div class="cells" id="col1"></div>
+                <div class="cells" id="col2"></div>
             </div>
             <div class="rows" id="row1">
-                <div class="cells" id="col0">4</div>
-                <div class="cells" id="col1">5</div>
-                <div class="cells" id="col2">6</div>
+                <div class="cells" id="col0"></div>
+                <div class="cells" id="col1"></div>
+                <div class="cells" id="col2"></div>
             </div>
             <div class="rows" id="row2">
-                <div class="cells" id="col0">7</div>
-                <div class="cells" id="col1">8</div>
-                <div class="cells" id="col2">9</div>
+                <div class="cells" id="col0"></div>
+                <div class="cells" id="col1"></div>
+                <div class="cells" id="col2"></div>
             </div>
         </div>
 
         <div class="buttonsContainer">
-            <button id="startGame">Start game</button>
-            <button id="boardReset">Reset board</button>
+            <button id="gameStart">Start game</button>
+            <!--<button id="boardReset">Reset board</button>-->
             <button id="gameReset">Reset game</button>
         </div>
     </div>
