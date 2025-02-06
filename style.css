@@ -1,6 +1,7 @@
 body{
     background-color: #a3d8f4;
     /*choose sans serif font maybe*/
+    font-family: Verdana, sans-serif;
 }
 
 .gameContainer{
@@ -28,11 +29,12 @@ body{
     margin: 0 5px;
 }
 
-/*.playerTotals>*{
-    padding: 0 5px;
-}*/
+.playerTotals div{
+    border-radius: 5px;
+    width: 100%;
+}
 
-.victories .count{
+.victories/* .count*/{
     text-align: center;
 }
 
@@ -52,6 +54,7 @@ body{
     width: 350px;
     height: 350px;
     justify-self: center;
+    font-size: 2em;
 }
 
 .rows{
@@ -68,14 +71,24 @@ body{
     align-items: center;
 
     background-color: white; /*temporary?*/
+
+    border-radius: 15px;
+    /*test fade*/
+    transition: background-color 250ms ease;
+    user-select: none;
+}
+
+.wrongCell{
+    background-color: red;
 }
 
 .buttonsContainer{
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     padding: 8px;
 }
 
 .buttonsContainer button{
     margin: 0 5px;
+    width: 100%;
 }

@@ -38,6 +38,12 @@ function Gameboard(){
         //console.log("Row: "+row+"; col: "+col);
         if(gameArr[row][col]!=" "){
             //console.log("Cell already full!");
+
+            e.target.classList.add("wrongCell");
+            setTimeout(() => {
+                e.target.classList.remove("wrongCell");
+            }, 200);
+
             return false;
         }
         gameArr[row][col]=player;
