@@ -1,6 +1,5 @@
 body{
     background-color: #a3d8f4;
-    /*choose sans serif font maybe*/
     font-family: Verdana, sans-serif;
 }
 
@@ -34,23 +33,20 @@ body{
     width: 100%;
 }
 
-.victories/* .count*/{
+.victories{
     text-align: center;
 }
 
 .currentPlayerRow{
-    /*text-align: center;*/
+    visibility: hidden;
     display: flex;
     justify-content: center;
-
-    visibility: hidden;
 }
 
 .gridContainer{
     display: grid;
     gap: 16px;
     padding: 8px;
-    /*temp*/
     width: 350px;
     height: 350px;
     justify-self: center;
@@ -69,11 +65,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background-color: white; /*temporary?*/
-
+    background-color: white;
     border-radius: 15px;
-    /*test fade*/
     transition: background-color 250ms ease;
     user-select: none;
 }
@@ -84,7 +77,6 @@ body{
 
 .buttonsContainer{
     display: flex;
-    /*justify-content: center;*/
     padding: 8px;
 }
 
